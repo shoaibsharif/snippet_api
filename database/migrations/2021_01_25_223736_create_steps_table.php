@@ -14,12 +14,15 @@ class CreateStepsTable extends Migration
     public function up()
     {
         Schema::create('steps', function (Blueprint $table) {
-            $table->uuid('uuid')->primary()->unique()->default(DB::raw('uuid_generate_v4()'));
+            $table->uuid('id')->primary()->unique()->default(DB::raw('uuid_generate_v4()'));
             $table->string('title')->nullable();
             $table->text('body')->nullable();
-            $table->integer('order')->unsigned()->index();
+            $table->decimal('order')->unsigned()->index();
             $table->foreignUuid('snippet_id')->constrained()->onDelete('cascade');
+//            $table->uuid('snippet_id');
+//            $table->foreign('snippet_id')->references('id')->on('snippets')->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 

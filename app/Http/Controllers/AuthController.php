@@ -18,7 +18,7 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        if (!auth()->attempt($request->all()))
+        if (!auth()->guard()->attempt($request->only('email', 'password'), $request->remember))
             throw new AuthenticationException();
 
         return response()->noContent();
@@ -26,7 +26,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        auth()->logout();
+        auth()->guard('web')->logout();
 
         return response()->noContent();
     }
