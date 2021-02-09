@@ -19,9 +19,11 @@ class SnippetResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title ?? "",
-            'steps' => StepResource::collection($this->steps),
+            'steps' => StepResource::collection($this->whenLoaded('steps')),
+            'is_public' => (bool)$this->is_public,
             'author' => new PublicUserResource($this->user),
-            'owner' => auth()->guard('sanctum')->user()?->id == $this->user_id
+            'owner' => auth()->guard('sanctum')->user()?->id == $this->user_id,
+            'steps_count' => $this->steps->count()
         ];
     }
 }

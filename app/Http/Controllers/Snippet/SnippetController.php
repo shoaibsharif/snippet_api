@@ -24,21 +24,32 @@ class SnippetController extends Controller
 
     public function index()
     {
-        return new SnippetCollection(Snippet::with('user', 'steps')->paginate());
+        return new SnippetCollection(Snippet::with('user')->take(10)->latest()->public()->get());
     }
 
     public function show(Snippet $snippet)
     {
-        return new SnippetResource($snippet);
+
+        $this->authorize('show', $snippet);
+        return new SnippetResource($snippet->load('steps'));
     }
 
     public function update(Snippet $snippet, Request $request)
     {
+        $this->authorize('update', $snippet);
         $this->validate($request, [
-            'title' => 'nullable'
+            'title' => 'nullable',
+            'is_public' => 'nullable|boolean'
         ]);
 
-        $snippet->update($request->only('title'));
+        $snippet->update($request->only('title', 'is_public'));
         return $snippet;
+    }
+
+    public function destroy(Snippet $snippet)
+    {
+        $this->authorize('destroy', $snippet);
+
+        $snippet->delete();
     }
 }

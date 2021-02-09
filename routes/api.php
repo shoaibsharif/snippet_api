@@ -33,7 +33,17 @@ Route::group(['prefix' => 'snippets'], function () {
     Route::post('/', [SnippetController::class, 'store'])->middleware('auth:sanctum');
     Route::get('{snippet}', [SnippetController::class, 'show']);
     Route::patch('{snippet}', [SnippetController::class, 'update']);
+    Route::delete('{snippet}', [SnippetController::class, 'destroy'])->middleware('auth:sanctum');
     Route::delete('{snippet}/steps/{step}', [StepController::class, 'destroy']);
     Route::patch('{snippet}/steps/{step}', [StepController::class, 'update']);
     Route::post('{snippet}/steps', [StepController::class, 'store']);
+});
+
+Route::group(['prefix' => 'me'], function () {
+    Route::get('/snippets', [\App\Http\Controllers\Me\SnippetController::class, 'index']);
+
+});
+
+Route::group(['prefix' => 'keys'], function () {
+    Route::get('/algolia', \App\Http\Controllers\Keys\AlgoliaController::class);
 });

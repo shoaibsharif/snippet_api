@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class SnippetCollection extends ResourceCollection
 {
+
     /**
      * Transform the resource collection into an array.
      *
@@ -16,9 +17,6 @@ class SnippetCollection extends ResourceCollection
     {
         return [
             'data' => SnippetResource::collection($this->collection),
-            'meta' => [
-                'stepsCount' => $this->count()
-            ]
         ];
     }
 }

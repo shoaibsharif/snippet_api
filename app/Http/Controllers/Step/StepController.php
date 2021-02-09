@@ -23,6 +23,7 @@ class StepController extends Controller
 
     public function update(Snippet $snippet, Step $step, Request $request)
     {
+        $this->authorize("update", $snippet);
         return $step->update($request->only('title', 'body'));
     }
 
@@ -33,6 +34,7 @@ class StepController extends Controller
 
     public function destroy(Snippet $snippet, Step $step, Request $request)
     {
+        $this->authorize("destroy", $snippet);
         if ($snippet->steps()->count() === 1) {
             return response('At least 1 step is required', 400);
         }
