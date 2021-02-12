@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return response()->json([
+        "message" => "Please visit " . env("SPA_URL") . " in order to see how it works."
+    ]);
 });

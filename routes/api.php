@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Snippet\SnippetController;
 use App\Http\Controllers\Step\StepController;
 use Illuminate\Http\Request;
@@ -17,14 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//require_once __DIR__ . '/fortify.php';
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::group(['prefix' => 'auth'], function () {
-    Route::post('register', [AuthController::class, 'register']);
-    Route::post('login', [AuthController::class, 'login'])->name('login');
-    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+//    Route::post('register', [AuthController::class, 'register']);
+//    Route::post('login', [AuthController::class, 'login'])->name('login');
+//    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+
+    Route::get("/email-verification-status", function () {
+        return response()->json([
+            "message" => "Email has been verified"
+        ]);
+    })->middleware('verified');
 });
 
 

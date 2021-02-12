@@ -49,6 +49,10 @@ class Snippet extends Model
         return $this->belongsTo(User::class)->latest();
     }
 
+    public function shouldBeSearchable()
+    {
+        return $this->isPublic();
+    }
 
     public function toSearchableArray()
     {
