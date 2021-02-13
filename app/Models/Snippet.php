@@ -39,12 +39,12 @@ class Snippet extends Model
         return $builder->where('is_public', true);
     }
 
-    public function steps(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function steps()
     {
         return $this->hasMany(Step::class)->orderBy('order', 'asc');
     }
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class)->latest();
     }
@@ -56,18 +56,6 @@ class Snippet extends Model
 
     public function toSearchableArray()
     {
-
-//        $array = $this->toArray();
-//        unset($array['created_at']);
-//        unset($array['updated_at']);
-//        unset($array['user_id']);
-//        $array['steps'] = $this->steps()->get()->map(function ($data) {
-//            return ['title' => $data['title'], 'body' => $data['body']];
-//        });
-//        $array['author'] = $this->user()->get()->map(function ($data) {
-//            return ['name' => $data['name'], 'email' => $data['email']];
-//        });
-
         $arr = SnippetResource::make($this->load('steps'))->jsonSerialize();
 
         unset($arr['owner']);

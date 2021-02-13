@@ -22,9 +22,9 @@ class SnippetController extends Controller
         return $snippet;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return new SnippetCollection(Snippet::with('user')->take(10)->latest()->public()->get());
+        return new SnippetCollection(Snippet::with('user')->latest()->public()->paginate($request->get('limit', 10)));
     }
 
     public function show(Snippet $snippet)
