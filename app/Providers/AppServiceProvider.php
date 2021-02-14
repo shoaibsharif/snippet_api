@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Reset Password URL
         ResetPassword::createUrlUsing(function ($notifiable, $token) {
-            return "http://snippet.test:3000/reset-password/{$token}?email={$notifiable->getEmailForPasswordReset()}";
+            return env('APP_URL') . "/reset-password/{$token}?email={$notifiable->getEmailForPasswordReset()}";
         });
     }
 }
