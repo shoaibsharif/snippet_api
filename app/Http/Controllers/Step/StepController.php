@@ -24,6 +24,7 @@ class StepController extends Controller
     public function update(Snippet $snippet, Step $step, Request $request)
     {
         $this->authorize("update", $snippet);
+
         return $step->update($request->only('title', 'body'));
     }
 

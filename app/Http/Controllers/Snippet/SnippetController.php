@@ -41,7 +41,9 @@ class SnippetController extends Controller
             'title' => 'nullable',
             'is_public' => 'nullable|boolean'
         ]);
-
+        if (!$request->title) {
+            $request->title = 'untitled Snippet';
+        }
         $snippet->update($request->only('title', 'is_public'));
         return $snippet;
     }
