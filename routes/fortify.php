@@ -17,7 +17,7 @@ use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController;
 use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticationController;
 use Laravel\Fortify\Http\Controllers\TwoFactorQrCodeController;
 
-Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
+Route::group(['middleware' => config('fortify.middleware', ['web']), 'prefix' => 'auth'], function () {
     $enableViews = config('fortify.views', true);
 
     // Authentication...
@@ -115,7 +115,7 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
         ->name('password.confirmation');
 
     Route::post('/user/confirm-password', [ConfirmablePasswordController::class, 'store'])
-        ->middleware(['auth']);
+        ->middleware(['auth:sanctum']);
 
     // Two Factor Authentication...
     if (Features::enabled(Features::twoFactorAuthentication())) {
