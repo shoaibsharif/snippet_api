@@ -26,11 +26,6 @@ Route::group(['prefix' => 'auth'], function () {
 //    Route::post('login', [AuthController::class, 'login'])->name('login');
 //    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-    Route::get("/email-verification-status", function () {
-        return response()->json([
-            "message" => "Email has been verified"
-        ]);
-    })->middleware('verified');
 });
 
 
@@ -53,3 +48,5 @@ Route::group(['prefix' => 'me'], function () {
 Route::group(['prefix' => 'keys'], function () {
     Route::get('/algolia', \App\Http\Controllers\Keys\AlgoliaController::class);
 });
+
+require_once __DIR__ . '/fortify.php';
