@@ -24,7 +24,7 @@ class SnippetController extends Controller
 
     public function index(Request $request)
     {
-        return new SnippetCollection(Snippet::with('user')->latest()->public()->paginate($request->get('limit', 10)));
+        return new SnippetCollection(Snippet::with('user')->withCount('steps')->latest()->public()->paginate($request->get('limit', 10)));
     }
 
     public function show(Snippet $snippet)
