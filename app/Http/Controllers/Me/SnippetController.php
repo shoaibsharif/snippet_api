@@ -15,6 +15,6 @@ class SnippetController extends Controller
 
     public function index(Request $request)
     {
-        return new SnippetCollection($request->user()->snippets);
+        return new SnippetCollection($request->user()->snippets->latest()->paginate());
     }
 }
