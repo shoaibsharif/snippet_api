@@ -1,5 +1,5 @@
 
 <p align="center">
-<h2> Snippet  </h2>
+Snippet
 A step by step tutorial
 </p>
