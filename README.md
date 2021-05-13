@@ -4,7 +4,7 @@
 
 This is laravel project that is powering https://snippet.shoaibsharif.dev
 
-Check out the frontend (github repo)[https://github.com/shoaibsharif/snippet_frontend]
+Check out the frontend [github repo](https://github.com/shoaibsharif/snippet_frontend)
 
 ## Features
 
