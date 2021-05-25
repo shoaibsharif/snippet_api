@@ -1,0 +1,15 @@
+---
+application:
+  name: "snippet-api"
+  project: "snippet"
+  organization: "QoveryCommunity"
+databases:
+- type: "POSTGRESQL"
+  name: "snippet"
+  version: "12"
+routers:
+- name: "main-snippet-api"
+  routes:
+  - application_name: "snippet-api"
+    paths:
+    - "/*"
