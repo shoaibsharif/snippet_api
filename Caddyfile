@@ -1,0 +1,12 @@
+# change domain
+
+:80 {
+    root * /srv/public
+
+    log
+    encode gzip
+
+    php_fastcgi php:9000
+
+    file_server
+}
