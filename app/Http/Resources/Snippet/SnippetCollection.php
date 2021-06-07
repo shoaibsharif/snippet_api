@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class SnippetCollection extends ResourceCollection
 {
+    public $collects = SnippetResource::class;
 
     /**
      * Transform the resource collection into an array.
@@ -16,7 +17,7 @@ class SnippetCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => SnippetResource::collection($this->collection),
+            'data' => $this->collection,
         ];
     }
 }
