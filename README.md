@@ -8,7 +8,6 @@ Check out the frontend [github repo](https://github.com/shoaibsharif/snippet_fro
 
 ## Features
 
-- Algolia integration
-- Auth setup with Laravel Sanctum
-- Algolia integration
+- Laravel Scout integration with Algolia
+- A Complete Auth setup with Laravel Sanctum
 
