@@ -12,9 +12,9 @@ class AlgoliaController extends Controller
         return response()->json([
             'data' => SearchClient::generateSecuredApiKey(
                 config('scout.algolia.key'), [
-                    'filters' => 'data.is_public'
+                    'filters' => 'data.is_public',
                 ]
-            )
+            ),
         ]);
     }
 }

@@ -16,18 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::group(['prefix' => 'auth'], function () {
-//    Route::post('register', [AuthController::class, 'register']);
-//    Route::post('login', [AuthController::class, 'login'])->name('login');
-//    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+    //    Route::post('register', [AuthController::class, 'register']);
+    //    Route::post('login', [AuthController::class, 'login'])->name('login');
+    //    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 });
-
 
 Route::group(['prefix' => 'snippets'], function () {
     Route::get('/', [SnippetController::class, 'index']);
@@ -49,4 +47,4 @@ Route::group(['prefix' => 'keys'], function () {
     Route::get('/algolia', \App\Http\Controllers\Keys\AlgoliaController::class);
 });
 
-require_once __DIR__ . '/fortify.php';
+require_once __DIR__.'/fortify.php';

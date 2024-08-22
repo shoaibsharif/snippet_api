@@ -13,12 +13,12 @@ class SnippetController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $snippet = auth()->user()->snippets()->create();
+
         return $snippet;
     }
 
@@ -31,6 +31,7 @@ class SnippetController extends Controller
     {
 
         $this->authorize('show', $snippet);
+
         return new SnippetResource($snippet->load('steps'));
     }
 
@@ -39,12 +40,13 @@ class SnippetController extends Controller
         $this->authorize('update', $snippet);
         $this->validate($request, [
             'title' => 'nullable',
-            'is_public' => 'nullable|boolean'
+            'is_public' => 'nullable|boolean',
         ]);
-        if (!$request->title) {
+        if (! $request->title) {
             $request->title = 'untitled Snippet';
         }
         $snippet->update($request->only('title', 'is_public'));
+
         return $snippet;
     }
 

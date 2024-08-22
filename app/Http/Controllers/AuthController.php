@@ -22,9 +22,9 @@ class AuthController extends Controller
          * auth()->guard('web') because as default I have changed it to 'sanctum' on config/auth.php. we will need
          * to use 'web' for SPA authentication.
          */
-
-        if (!auth()->guard('web')->attempt($request->only('email', 'password'), $request->remember))
-            throw new AuthenticationException();
+        if (! auth()->guard('web')->attempt($request->only('email', 'password'), $request->remember)) {
+            throw new AuthenticationException;
+        }
 
         return response()->noContent();
     }

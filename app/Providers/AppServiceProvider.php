@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Reset Password URL
         ResetPassword::createUrlUsing(function ($notifiable, $token) {
-            return env('SPA_URL') . "/reset-password/{$token}?email={$notifiable->getEmailForPasswordReset()}";
+            return env('SPA_URL')."/reset-password/{$token}?email={$notifiable->getEmailForPasswordReset()}";
         });
         // Verify email URL
         VerifyEmail::createUrlUsing(function ($notifiable) {
@@ -47,7 +47,8 @@ class AppServiceProvider extends ServiceProvider
                 ]
             );
             $slicedUrl = explode('?', $url)[1];
-            return env('SPA_URL') . "/email/verify/{$notifiable->getKey()}/{$hashEmail}?{$slicedUrl}";
+
+            return env('SPA_URL')."/email/verify/{$notifiable->getKey()}/{$hashEmail}?{$slicedUrl}";
         });
     }
 }

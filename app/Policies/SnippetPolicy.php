@@ -16,7 +16,9 @@ class SnippetPolicy
          * for some reason User doesn't work if guard auth is default to 'web'. It needed to change to
          * 'sanctum' in order to work. In fact, we can only access user via 'sanctum' guard.
          */
-        if ($snippet->isPublic()) return true;
+        if ($snippet->isPublic()) {
+            return true;
+        }
 
         return $user?->id === $snippet->user_id;
     }

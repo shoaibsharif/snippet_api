@@ -14,7 +14,7 @@ class StepController extends Controller
     {
         $step = $snippet->steps()->create(array_merge(
             $request->only('title', 'body'), [
-                'order' => $this->getOrder($request)
+                'order' => $this->getOrder($request),
             ]
         ));
 
@@ -23,19 +23,19 @@ class StepController extends Controller
 
     public function update(Snippet $snippet, Step $step, Request $request)
     {
-        $this->authorize("update", $snippet);
+        $this->authorize('update', $snippet);
 
         return $step->update($request->only('title', 'body'));
     }
 
     protected function getOrder(Request $request)
     {
-        return Step::where('id', $request->before)->orWhere('id', $request->after)->first()->{($request->before ? 'before' : 'after') . 'Order'}();
+        return Step::where('id', $request->before)->orWhere('id', $request->after)->first()->{($request->before ? 'before' : 'after').'Order'}();
     }
 
     public function destroy(Snippet $snippet, Step $step, Request $request)
     {
-        $this->authorize("destroy", $snippet);
+        $this->authorize('destroy', $snippet);
         if ($snippet->steps()->count() === 1) {
             return response('At least 1 step is required', 400);
         }

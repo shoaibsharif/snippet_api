@@ -13,9 +13,13 @@ class Snippet extends Model
     use HasFactory, Searchable;
 
     protected $fillable = ['user_id', 'title', 'is_public'];
+
     protected $casts = ['id' => 'string'];
+
     protected $primaryKey = 'id';
+
     protected $keyType = 'string';
+
     protected $touches = ['steps'];
 
     public static function boot()
@@ -24,7 +28,7 @@ class Snippet extends Model
 
         static::created(function ($snippet) {
             $snippet->steps()->create([
-                'order' => 1
+                'order' => 1,
             ]);
         });
     }
